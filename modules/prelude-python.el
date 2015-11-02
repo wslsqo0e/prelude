@@ -89,6 +89,7 @@
   (subword-mode +1)
   (anaconda-mode 1)
   (eldoc-mode 1)
+  (define-key python-mode-map "\M-g" 'anaconda-mode-goto-definitions)  ;; shenm.  Alt+g goto definition in python mode!!!
   (setq-local electric-layout-rules
               '((?: . (lambda ()
                         (and (zerop (first (syntax-ppss)))
@@ -97,8 +98,9 @@
   (when (fboundp #'python-imenu-create-flat-index)
     (setq-local imenu-create-index-function
                 #'python-imenu-create-flat-index))
-  (add-hook 'post-self-insert-hook
-            #'electric-layout-post-self-insert-function nil 'local)
+  ;; 导致插入 ":" 时自动在下面插入一行，而且还不对齐 （一直在行首位置） 注释该功能
+  ;;(add-hook 'post-self-insert-hook
+  ;;          #'electric-layout-post-self-insert-function nil 'local)
   (add-hook 'after-save-hook 'prelude-python-mode-set-encoding nil 'local))
 
 (setq prelude-python-mode-hook 'prelude-python-mode-defaults)

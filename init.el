@@ -44,7 +44,7 @@
 ;; Always load newest byte code
 (setq load-prefer-newer t)
 
-(defvar prelude-dir (file-name-directory load-file-name)
+(defvar prelude-dir (file-name-directory load-file-name)      ;; ~/.emacs.d/
   "The root dir of the Emacs Prelude distribution.")
 (defvar prelude-core-dir (expand-file-name "core" prelude-dir)
   "The home of Prelude's core functionality.")
@@ -66,7 +66,7 @@ by Prelude.")
   "This files contains a list of modules that will be loaded by Prelude.")
 
 (unless (file-exists-p prelude-savefile-dir)
-  (make-directory prelude-savefile-dir))
+  (make-directory prelude-savefile-dir))            ;; ~/.emacs.d/savefile
 
 (defun prelude-add-subfolders-to-load-path (parent-dir)
  "Add all level PARENT-DIR subdirs to the `load-path'."
@@ -91,6 +91,7 @@ by Prelude.")
 (setq large-file-warning-threshold 100000000)
 
 ;; preload the personal settings from `prelude-personal-preload-dir'
+;; ~/.emacs.d/personal/preload     this directory is empty
 (when (file-exists-p prelude-personal-preload-dir)
   (message "Loading personal configuration files in %s..." prelude-personal-preload-dir)
   (mapc 'load (directory-files prelude-personal-preload-dir 't "^[^#].*el$")))
@@ -113,12 +114,14 @@ by Prelude.")
 (message "Loading Prelude's modules...")
 
 ;; the modules
+;; ~/.emacs.d/prelude-modules.el
 (if (file-exists-p prelude-modules-file)
     (load prelude-modules-file)
   (message "Missing modules file %s" prelude-modules-file)
   (message "You can get started by copying the bundled example file"))
 
 ;; config changes made through the customize UI will be store here
+;; ~/.emacs.d/personal/custom.el
 (setq custom-file (expand-file-name "custom.el" prelude-personal-dir))
 
 ;; load the personal settings (this includes `custom-file')
