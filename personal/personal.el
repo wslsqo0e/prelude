@@ -51,6 +51,12 @@
 (define-key evil-insert-state-map "\C-p" 'previous-line)
 (define-key evil-normal-state-map (kbd "TAB") 'evil-undefine)
 
+;; for emacs use under cygwin, to set chinese font
+(if (equal system-type 'cygwin)
+    (set-fontset-font "fontset-default"
+                  'han (font-spec :family "Microsoft Yahei")
+                  nil 'prepend))
+
 (defun evil-undefine ()
   (interactive)
   (let (evil-mode-map-alist)
