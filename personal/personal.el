@@ -57,6 +57,9 @@
                   'han (font-spec :family "Microsoft Yahei")
                   nil 'prepend))
 
+;;close the annoyed voice of warning
+(setq visible-bell t)
+
 (defun evil-undefine ()
   (interactive)
   (let (evil-mode-map-alist)
