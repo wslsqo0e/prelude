@@ -64,7 +64,7 @@
     guru-mode
     ov
     projectile
-;;    magit
+    magit
     move-text
     operate-on-number
     smart-mode-line
