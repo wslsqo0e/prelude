@@ -1,9 +1,14 @@
+;;; person.el --- my personal setting SM.
+
+;;; Commentary:
+
 ;; ;;selection with a mouse being immediately injected to the kill ring
 ;; (setq mouse-drag-copy-region t)
 
 ;; ;;some customer key-bindings
 ;; (global-set-key (kbd "C-z") 'undo)
 
+;;; code:
 (setq-default initial-scratch-message
               (concat ";; Happy hacking " (or user-login-name "") " - Emacs ♥ you!\n\n"))
 
@@ -60,6 +65,10 @@
 ;;close the annoyed voice of warning
 (setq visible-bell t)
 
+;; disable electric-indent-mode because it makes C-j not work well in python mode
+;; I'am not sure about the side affect
+(electric-indent-mode -1)
+
 (defun evil-undefine ()
   (interactive)
   (let (evil-mode-map-alist)
@@ -67,3 +76,4 @@
 
 (provide 'personal)
 
+;;; personal.el ends here

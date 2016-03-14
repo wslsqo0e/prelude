@@ -98,9 +98,10 @@
   (when (fboundp #'python-imenu-create-flat-index)
     (setq-local imenu-create-index-function
                 #'python-imenu-create-flat-index))
-  ;; 导致插入 ":" 时自动在下面插入一行，而且还不对齐 （一直在行首位置） 注释该功能
-  ;;(add-hook 'post-self-insert-hook
-  ;;          #'electric-layout-post-self-insert-function nil 'local)
+  ;; 导致插入 ":" 时自动在下面插入一行，而且还不对齐 （一直在行首位置） 注释该功能  emacs24.4 与 emacs24.5中间有不同，如下语句在24.5正常
+  ;; 同 electric-indent-mode 是否启用相关
+;;  (add-hook 'post-self-insert-hook
+;;            #'electric-layout-post-self-insert-function nil 'local)
   (add-hook 'after-save-hook 'prelude-python-mode-set-encoding nil 'local))
 
 (setq prelude-python-mode-hook 'prelude-python-mode-defaults)
